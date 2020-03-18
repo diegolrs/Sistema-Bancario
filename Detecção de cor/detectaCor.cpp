@@ -1,4 +1,3 @@
-
 #include <opencv2/objdetect.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc.hpp>
@@ -10,18 +9,15 @@ int main(int argc, const char** argv)
 {
 	cv::VideoCapture webCam(0);
 	cv::Mat frame;
-	cv::namedWindow("image", CV_WINDOW_FREERATIO);
 
 	const int FRAMES_MINIMOS_PARA_VALIDACAO = 130;
 
 	int framesVermelhos, framesVerdes, framesAzuis;
 	framesVermelhos = framesVerdes = framesAzuis = 0;
 
-
 	if (!webCam.isOpened()) // Caso falhe em iniciar webam
-	{
 		return 1;
-	}
+	
 
 	while (webCam.read(frame)) // webCam >> frame
 	{
@@ -89,14 +85,10 @@ int main(int argc, const char** argv)
 			framesVerdes = 0;
 		}
 
-		cv::namedWindow("Ouput", CV_WINDOW_FREERATIO);
-
 		if (cv::waitKey(1000 / 1000) >= 0) // Delay + Pressiona um botão pra sair
 		{
 			break;
 		}
 	}
-
-
 	cv::waitKey(0);
 }
