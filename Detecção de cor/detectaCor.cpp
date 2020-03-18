@@ -11,32 +11,95 @@
 using namespace std;
 using namespace cv;
 
-
 int main(int argc, const char** argv)
 {
-	Mat image = imread("imagens/imagem3.jpg", 1);
+	cv::VideoCapture webCam(0);
+	Mat frame;
 	namedWindow("image", CV_WINDOW_FREERATIO);
-	imshow("image", image);
-	waitKey(0);
 
-	// RED
-	Mat OutputImage;
-	inRange(image, Scalar(10, 10, 100), Scalar(100, 100, 255), OutputImage);
+	const int FRAMES_MINIMOS_PARA_VALIDACAO = 130;
 
-	// BLUE
-	Mat OutputImage2;
-	inRange(image, Scalar(100, 10, 10), Scalar(255, 100, 100), OutputImage2);
+	int framesVermelhos, framesVerdes, framesAzuis;
+	framesVermelhos = framesVerdes = framesAzuis = 0;
 
-	int x1, x2;
-	x1 = countNonZero(OutputImage);
-	x2 = countNonZero(OutputImage2);
 
-	if (x1 > x2)
-		cout << "Vermelho";
-	else
-		cout << "Azul";
+	if (!webCam.isOpened()) // Caso falhe em iniciar webam
+	{
+		return 1;
+	}
 
-	namedWindow("Ouput", CV_WINDOW_FREERATIO);
-	imshow("Output", OutputImage2);
+	while (webCam.read(frame)) // webCam >> frame
+	{
+		imshow("WebCam", frame); // Mostra o frame lido do webcam
+
+		// BGR COLOR
+		// RED
+		Mat OutputImage;
+		inRange(frame, Scalar(10, 10, 100), Scalar(50, 50, 255), OutputImage);
+
+		// BLUE
+		Mat OutputImage2;
+		inRange(frame, Scalar(100, 10, 10), Scalar(255, 50, 50), OutputImage2);
+
+		// GREEN
+		Mat OutputImage3;
+		inRange(frame, Scalar(10, 100, 10), Scalar(50, 255, 50), OutputImage3);
+
+
+		int x1, x2, x3;
+		x1 = countNonZero(OutputImage);
+		x2 = countNonZero(OutputImage2);
+		x3 = countNonZero(OutputImage3);
+
+		if (x1 > x2 && x1 > x3)
+		{
+			framesVermelhos++;
+			framesAzuis = 0;
+			framesVerdes = 0;
+		}
+		else if (x2 > x1 && x2 > x3)
+		{
+			framesAzuis++;
+			framesVermelhos = 0;
+			framesVerdes = 0;
+		}
+		else if (x3 > x1 && x3 > x2)
+		{
+			framesVerdes++;
+			framesVermelhos = 0;
+			framesAzuis = 0;
+		}
+
+		if (framesVermelhos >= FRAMES_MINIMOS_PARA_VALIDACAO)
+		{
+			cout << "Vermelho ";
+			framesVermelhos = 0;
+			framesAzuis = 0;
+			framesVerdes = 0;
+		}
+
+		if (framesAzuis >= FRAMES_MINIMOS_PARA_VALIDACAO)
+		{
+			cout << "Azul ";
+			framesVermelhos = 0;
+			framesAzuis = 0;
+			framesVerdes = 0;
+		}
+
+		if (framesVerdes >= FRAMES_MINIMOS_PARA_VALIDACAO)
+		{
+			cout << "Verde ";
+			framesVermelhos = 0;
+			framesAzuis = 0;
+			framesVerdes = 0;
+		}
+
+		namedWindow("Ouput", CV_WINDOW_FREERATIO);
+
+		if (cv::waitKey(1000 / 1000) >= 0) // Delay + Pressiona um botão pra sair
+		{
+			break;
+		}
+	}
 	waitKey(0);
 }
