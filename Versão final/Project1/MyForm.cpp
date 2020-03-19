@@ -1,7 +1,3 @@
-/* Canto Superior Direito -> Solution Explorer -> Seu Projeto -> Properties -> Linker -> Advanced -> Entry Point -> Colocar "main"
-
-Ainda No Linker -> System -> Windows(/SUBSYSTEM:WINDOWS) */
-
 #include "MyForm.h"
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -11,13 +7,12 @@ Ainda No Linker -> System -> Windows(/SUBSYSTEM:WINDOWS) */
 #include <opencv2/imgproc.hpp>
 #include <opencv2/core/core.hpp>
 
-
 using namespace System;
 using namespace System::Windows::Forms;
 
 const int FPS = 1000; // Altera o delay de waitKey(1000 / FPS)
 /* Nota:  Quanto maior a constante FPS for,
-menor È o delay na equaÁ„o "waitkey(1000 / FPS)" */
+menor √© o delay na equa√ß√£o "waitkey(1000 / FPS)" */
 
 bool ativarWebCam() {
 	cv::VideoCapture webCam(0);
@@ -104,7 +99,7 @@ bool ativarWebCam() {
 			break;
 		}
 
-		if (cv::waitKey(1000 / 1000) >= 0) // Delay + Pressiona um bot„o pra sair
+		if (cv::waitKey(1000 / 1000) >= 0) // Delay + Pressiona um bot√£o pra sair
 		{
 			usuario = "Usuario invalido";
 			break;
@@ -116,7 +111,6 @@ bool ativarWebCam() {
 }
 
 void startFront() {
-
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
@@ -127,7 +121,8 @@ void startFront() {
 }
 
 [STAThread] // Pode Ser int main Ou void main
-int main(array<String^>^ arg) {
+int main(array<String^>^ arg) 
+{
 	ativarWebCam();
 
 	if(usuario != "Usuario invalido")
