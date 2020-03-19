@@ -1,5 +1,5 @@
 # Sistema Bancário
-## Projeto final para as disciplinas de Linguagem de programação I (Professor Tiago Maritan) e Laboratório de Linguagem de programação I ## (Professor Derzu Omaia)
+## Projeto final para as disciplinas de Linguagem de programação I (Professor Tiago Maritan) e Laboratório de Linguagem de programação I  (Professor Derzu Omaia)
 
 ### Linguagem utilizada: C++.
 
