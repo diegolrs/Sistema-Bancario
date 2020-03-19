@@ -13,6 +13,7 @@
 ### A escala de cor usada pela opencv é a BGR (Blue - Green - Red)
 
 #### Personagens utilizados para o teste:
+(Atenção, os personagens utilizados são de nossa autoria e detemos propriedade intelectual)
 <p align="center">
    <img width="70%" height="70%" src="https://github.com/diegolrs/Sistema-Bancario/blob/master/imagens/personagens.jpg">
 </p>
