@@ -18,4 +18,10 @@
    <img width="70%" height="70%" src="https://github.com/diegolrs/Sistema-Bancario/blob/master/imagens/personagens.jpg">
 </p>
 
-< Os personagens utilizados são de nossa autoria e detemos propriedade intelectual! >
+
+<p align="center">
+   Os personagens utilizados são de nossa autoria e detemos propriedade intelectual! 
+</p>
+
+
+
