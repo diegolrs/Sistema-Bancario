@@ -23,5 +23,8 @@
    Os personagens utilizados são de nossa autoria e detemos propriedade intelectual! 
 </p>
 
+<p align="center">
+   Permitimos o uso para fins educacionais.
+</p>
 
 
